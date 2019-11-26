@@ -8,11 +8,11 @@ import Last from '../components/Last/Last'
 let randNumbers;
 
 export default () => {
-  if (typeof window !== 'undefined') {
-    if (JSON.parse(localStorage.getItem('numbersArray'))) {
-      randNumbers = JSON.parse(localStorage.getItem('numbersArray'))
-    } else {
-      randNumbers = generateRandNumbers()
+  if (typeof window !== 'undefined' && JSON.parse(localStorage.getItem('numbersArray'))) {
+    randNumbers = JSON.parse(localStorage.getItem('numbersArray'))
+  } else {
+    randNumbers = generateRandNumbers()
+    if (typeof window !== 'undefined') {
       localStorage.setItem('numbersArray', JSON.stringify(randNumbers))
     }
   }
@@ -22,7 +22,7 @@ export default () => {
   const [loading, setLoading] = useState(false)
 
   let initialIndex = 0;
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined' && localStorage.getItem('currentIndex')) {
     initialIndex = () => Number(localStorage.getItem('currentIndex'))
   }
   const [currentRandIndex, setCurrentRandIndex] = useState(initialIndex);
@@ -32,7 +32,7 @@ export default () => {
   const [lastNumber, setLastNumber] = useState(initialLastNumber)
 
   let initialChecked = Array.from(Array(75), (v, i) => false)
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined' && localStorage.getItem('numbersChecked')) {
     initialChecked = () => JSON.parse(localStorage.getItem('numbersChecked'))
   }
 
