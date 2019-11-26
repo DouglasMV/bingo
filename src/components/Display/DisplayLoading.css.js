@@ -1,23 +1,25 @@
 import styled, { keyframes } from 'styled-components'
 
 const animate = keyframes`
-    0% {
-      transform: scale(1);
-    }
     50% {
-      transform: scale(0.5);
+		  stroke-dashoffset: 269.7405090332031px;
     }
-    100% {
-      transform: scale(1);
+    50.01% {
+      stroke-dashoffset: -269.7405090332031px;
     }
   `
 
 const StyledDisplayLoading = styled.div`
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background-color: yellow;
-  animation: ${animate} 2s linear infinite;
+  width: 175px;
+  margin: 10px auto 0 auto;
+  height: 175px;
+  
+  & svg {
+    stroke-dasharray: 269.7405090332031px;
+	  stroke-dashoffset: 0;
+	  animation: ${animate} 4s linear reverse infinite;
+	  transform: rotate(-90deg);
+  }
 `
 
 export default StyledDisplayLoading
