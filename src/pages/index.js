@@ -4,6 +4,7 @@ import GlobalStyle from "../GlobalStyle.js"
 import Display from '../components/Display/Display.js'
 import generateRandNumbers from '../utils/generateRandNumbers'
 import Last from '../components/Last/Last'
+import SEO from '../components/SEO'
 
 let randNumbers;
 
@@ -89,6 +90,7 @@ export default () => {
 
   return (
     <div>
+      <SEO />
       <Display number={lastNumber} loading={loading} />
       <Last index={currentRandIndex} />
       <button className='btn' disabled={loading} onClick={handleClick}>Próximo Número!</button>
