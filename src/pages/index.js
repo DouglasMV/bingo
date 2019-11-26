@@ -9,6 +9,8 @@ let btnText = 'Próximo Número!'
 
 export default () => {
 
+  const [loading, setLoading] = useState(false)
+
   const [currentRandIndex, setCurrentRandIndex] = useState(0);
 
   const [lastNumber, setLastNumber] = useState("Boa Sorte!")
@@ -16,23 +18,29 @@ export default () => {
   const [numbersChecked, setNumbersChecked] = useState(Array.from(Array(75), (v, i) => false))
 
   function handleClick() {
-    setCurrentRandIndex(currentRandIndex + 1)
+    setLoading(true)
 
-    if (currentRandIndex === randNumbers.length - 1) {
-      btnText = "Fim"
-    }
-    if (currentRandIndex >= randNumbers.length) {
-      return
-    }
+    setTimeout(() => {
+      setCurrentRandIndex(currentRandIndex + 1)
 
-    setLastNumber(randNumbers[currentRandIndex].index + 1)
-    setNumbersChecked(numbersChecked.map((v, i) => i === randNumbers[currentRandIndex].index ? true : v))
+      if (currentRandIndex === randNumbers.length - 1) {
+        btnText = "Fim"
+      }
+      if (currentRandIndex >= randNumbers.length) {
+        return
+      }
+
+      setLastNumber(randNumbers[currentRandIndex].index + 1)
+      setNumbersChecked(numbersChecked.map((v, i) => i === randNumbers[currentRandIndex].index ? true : v))
+      setLoading(false)
+    }, Math.random() * 3000)
+
   }
 
   return (
     <div>
-      <Display number={lastNumber} />
-      <button onClick={handleClick}>{btnText}</button>
+      <Display number={lastNumber} loading={loading} />
+      <button disabled={loading} onClick={handleClick}>{btnText}</button>
       <Table numbersChecked={numbersChecked} />
       <GlobalStyle />
     </div>

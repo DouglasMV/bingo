@@ -4,8 +4,6 @@ import StyledTableBody from '../TableBody/TableBody.css'
 
 const nums = Array.from(Array(75), (e, i) => i)
 
-//TODO: checked state
-
 export default function TableBody(props) {
   return (
     <StyledTableBody>
