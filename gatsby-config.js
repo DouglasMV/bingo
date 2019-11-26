@@ -5,9 +5,10 @@
  */
 
 module.exports = {
+  pathPrefix: "/bingo",
   siteMetadata: {
     title: "Bingo!",
-    titleTemplate: "%s · Bingo!",
+    titleTemplate: "Bingo!",
     description:
       "A Progressive Web App to play Bingo!",
     url: "https://bingo-5411133626.gtsb.io/", // No trailing slash allowed!
