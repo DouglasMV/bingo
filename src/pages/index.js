@@ -7,38 +7,47 @@ import Last from '../components/Last/Last'
 
 let randNumbers;
 
-if (JSON.parse(localStorage.getItem('numbersArray'))) {
-  randNumbers = JSON.parse(localStorage.getItem('numbersArray'))
-} else {
-  randNumbers = generateRandNumbers()
-  localStorage.setItem('numbersArray', JSON.stringify(randNumbers))
-}
-
 export default () => {
+  if (typeof window !== 'undefined') {
+    if (JSON.parse(localStorage.getItem('numbersArray'))) {
+      randNumbers = JSON.parse(localStorage.getItem('numbersArray'))
+    } else {
+      randNumbers = generateRandNumbers()
+      localStorage.setItem('numbersArray', JSON.stringify(randNumbers))
+    }
+  }
 
   const [showResetOptions, setShowResetOptions] = useState(false)
 
   const [loading, setLoading] = useState(false)
 
-  const [lastNumber, setLastNumber] = useState("Bingo")
-
-  const initialIndex = () => Number(localStorage.getItem('currentIndex') || 0)
-
+  let initialIndex = 0;
+  if (typeof window !== 'undefined') {
+    initialIndex = () => Number(localStorage.getItem('currentIndex'))
+  }
   const [currentRandIndex, setCurrentRandIndex] = useState(initialIndex);
 
-  const initialChecked = () => JSON.parse(localStorage.getItem('numbersChecked')) || Array.from(Array(75), (v, i) => false)
+  const initialLastNumber = currentRandIndex > 0 ? randNumbers[currentRandIndex - 1].index + 1 : "Bingo!"
+
+  const [lastNumber, setLastNumber] = useState(initialLastNumber)
+
+  let initialChecked = Array.from(Array(75), (v, i) => false)
+  if (typeof window !== 'undefined') {
+    initialChecked = () => JSON.parse(localStorage.getItem('numbersChecked'))
+  }
 
   const [numbersChecked, setNumbersChecked] = useState(initialChecked)
 
   useEffect(() => {
-    console.log(currentRandIndex)
-    localStorage.setItem('currentIndex', currentRandIndex)
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('currentIndex', currentRandIndex)
+    }
   }, [currentRandIndex])
 
   useEffect(() => {
-    console.log(numbersChecked)
-
-    localStorage.setItem('numbersChecked', JSON.stringify(numbersChecked))
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('numbersChecked', JSON.stringify(numbersChecked))
+    }
   }, [numbersChecked])
 
   function handleClick() {
@@ -54,14 +63,11 @@ export default () => {
       setLastNumber(randNumbers[currentRandIndex].index + 1)
       setNumbersChecked(numbersChecked.map((v, i) => i === randNumbers[currentRandIndex].index ? true : v))
       setLoading(false)
-
-
     }, 2000)
   }
 
   function handleReset() {
     setShowResetOptions(true)
-    console.log(setShowResetOptions)
   }
 
   function handleConfirm() {
@@ -70,9 +76,11 @@ export default () => {
     setLastNumber("Bingo")
     setNumbersChecked(numbersChecked.map((v, i) => false))
     setShowResetOptions(false)
-    localStorage.removeItem('currentIndex')
-    localStorage.removeItem('numbersArray')
-    localStorage.removeItem('numbersChecked')
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('currentIndex')
+      localStorage.removeItem('numbersArray')
+      localStorage.removeItem('numbersChecked')
+    }
   }
 
   function handleCancel() {
@@ -95,4 +103,4 @@ export default () => {
   )
 }
 
-export {randNumbers}
+export { randNumbers }
