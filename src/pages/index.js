@@ -53,18 +53,16 @@ export default () => {
 
   function handleClick() {
     setLoading(true)
+    setCurrentRandIndex(currentRandIndex + 1)
+    setLastNumber(randNumbers[currentRandIndex].index + 1)
 
     setTimeout(() => {
-      setCurrentRandIndex(currentRandIndex + 1)
-
       if (currentRandIndex >= randNumbers.length) {
         return
       }
-
-      setLastNumber(randNumbers[currentRandIndex].index + 1)
       setNumbersChecked(numbersChecked.map((v, i) => i === randNumbers[currentRandIndex].index ? true : v))
       setLoading(false)
-    }, 2000)
+    }, 1000)
   }
 
   function handleReset() {

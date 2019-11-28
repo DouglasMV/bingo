@@ -17,7 +17,7 @@ const StyledDisplayLoading = styled.div`
   & svg {
     stroke-dasharray: 269.7405090332031px;
 	  stroke-dashoffset: 0;
-	  animation: ${animate} 4s linear reverse infinite;
+	  animation: ${animate} 2s linear reverse infinite;
 	  transform: rotate(-90deg);
   }
 `
