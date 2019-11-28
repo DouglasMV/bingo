@@ -21,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     font-weight: bold;
     font-size: 20px;
-    border: none;
+    border: 1px solid white;
   }
 
   .confirm {
@@ -33,7 +33,7 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     font-weight: bold;
     font-size: 16px;
-    border: none;
+    border: 1px solid white;
   }
 
   .cancel {
@@ -45,7 +45,7 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     font-weight: bold;
     font-size: 16px;
-    border: none;
+    border: 1px solid white;
   }
 
   .resetOptions {
