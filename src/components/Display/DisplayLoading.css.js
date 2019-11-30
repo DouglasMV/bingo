@@ -13,16 +13,16 @@ const animate = keyframes`
   `
 
 const StyledDisplayLoading = styled.div`
-  display: inline-block;
+  display: block;
   width: 175px;
   height: 175px;
-  margin: auto;
+  margin: 10px auto 0 auto;
   &:after {
     content: " ";
     display: block;
-    width: 159px;
-    height: 159px;
-    margin: 8px;
+    width: 150px;
+    height: 150px;
+    margin: 10px auto;
     border-radius: 50%;
     border: 6px solid yellow;
     border-color: yellow transparent yellow transparent;
