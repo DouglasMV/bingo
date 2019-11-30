@@ -6,11 +6,7 @@ export default function Display(props) {
 
   if (props.loading) {
     return (
-    <StyledDisplayLoading>
-      <svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
-        <circle id="c" fill="none" strokeWidth="4" strokeLinecap="round" stroke="yellow" cx="45" cy="45" r="43" />
-      </svg>
-    </StyledDisplayLoading>
+      <StyledDisplayLoading />
     )
   }
 

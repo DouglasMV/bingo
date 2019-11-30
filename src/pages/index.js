@@ -28,7 +28,7 @@ export default () => {
   }
   const [currentRandIndex, setCurrentRandIndex] = useState(initialIndex);
 
-  const initialLastNumber = currentRandIndex > 0 ? randNumbers[currentRandIndex - 1].index + 1 : "Bingo!"
+  const initialLastNumber = currentRandIndex > 0 ? randNumbers[currentRandIndex - 1].index : "Bingo!"
 
   const [lastNumber, setLastNumber] = useState(initialLastNumber)
 
@@ -53,16 +53,16 @@ export default () => {
 
   function handleClick() {
     setLoading(true)
-    setCurrentRandIndex(currentRandIndex + 1)
-    setLastNumber(randNumbers[currentRandIndex].index + 1)
-
-    setTimeout(() => {
-      if (currentRandIndex >= randNumbers.length) {
-        return
-      }
-      setNumbersChecked(numbersChecked.map((v, i) => i === randNumbers[currentRandIndex].index ? true : v))
+    if (currentRandIndex === randNumbers.length) {
       setLoading(false)
-    }, 1000)
+      return
+    }
+    setCurrentRandIndex(currentRandIndex + 1)
+    setLastNumber(randNumbers[currentRandIndex].index)
+    setTimeout(() => {
+      setNumbersChecked(numbersChecked.map((v, i) => i === randNumbers[currentRandIndex].index - 1 ? true : v))
+      setLoading(false)
+    }, 500+2000*Math.random())
   }
 
   function handleReset() {
@@ -87,7 +87,7 @@ export default () => {
   }
 
   return (
-    <div>
+    <div class="grid">
       <SEO />
       <Display number={lastNumber} loading={loading} />
       <Last index={currentRandIndex} />

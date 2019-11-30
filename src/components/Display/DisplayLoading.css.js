@@ -1,24 +1,32 @@
 import styled, { keyframes } from 'styled-components'
 
 const animate = keyframes`
-    50% {
-		  stroke-dashoffset: 269.7405090332031px;
+    0% {
+      transform: rotate(0deg) scale(1);
     }
-    50.01% {
-      stroke-dashoffset: -269.7405090332031px;
+    50% {
+      transform: rotate(180deg) scale(0.8);
+    }
+    100% {
+      transform: rotate(360deg) scale(1);
     }
   `
 
 const StyledDisplayLoading = styled.div`
+  display: inline-block;
   width: 175px;
-  margin: 10px auto 0 auto;
   height: 175px;
-  
-  & svg {
-    stroke-dasharray: 269.7405090332031px;
-	  stroke-dashoffset: 0;
-	  animation: ${animate} 2s linear reverse infinite;
-	  transform: rotate(-90deg);
+  margin: auto;
+  &:after {
+    content: " ";
+    display: block;
+    width: 159px;
+    height: 159px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid yellow;
+    border-color: yellow transparent yellow transparent;
+    animation: ${animate} 1s linear infinite;
   }
 `
 

@@ -52,6 +52,18 @@ const GlobalStyle = createGlobalStyle`
     width: 175px;
     margin: 0 auto;
   }
+
+  @media screen and (min-width: 600px) {
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 300px);
+      grid-template-rows: 175px repeat(4, 40px) 225px;
+      grid-auto-flow: row dense;
+      justify-content: center;
+      align-content: center;
+      min-height: 100vh;
+    }
+  }
 `
 
 export default GlobalStyle
