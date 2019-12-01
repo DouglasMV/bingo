@@ -20,38 +20,38 @@ const GlobalStyle = createGlobalStyle`
     color: white;
     cursor: pointer;
     font-weight: bold;
-    font-size: 20px;
-    border: 1px solid white;
+    font-size: 16px;
+    border: none;
   }
 
-  .confirm {
+  .btn.reset-btn{
+    background-color: rgb(20, 50, 73)
+  }
+
+  .btn.confirm {
     display: inline-block;
     width: 88px;
-    height: 40px;
     background-color: rgb(50, 90, 60);
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
-    border: 1px solid white;
   }
 
-  .cancel {
+  .btn.cancel {
     display: inline-block;
     width: 87px;
-    height: 40px;
     background-color: rgb(90, 50, 60);
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
-    border: 1px solid white;
   }
 
   .resetOptions {
     width: 175px;
     margin: 0 auto;
   }
+  .btn:focus {
+    outline: none;
+  }
+  .btn::-moz-focus-inner {
+    border: 0;
+  }
+
+
 
   @media screen and (min-width: 600px) {
     .grid {

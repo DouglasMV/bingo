@@ -6,7 +6,7 @@ export default function LastFive(props) {
   if (props.index > 1) {
     return (
       <StyledLast>
-        Anterior: {randNumbers[props.index - 2].index + 1}
+        Anterior: {randNumbers[props.index - 2].index}
       </StyledLast>
     )
   }

@@ -62,11 +62,11 @@ export default () => {
     setTimeout(() => {
       setNumbersChecked(numbersChecked.map((v, i) => i === randNumbers[currentRandIndex].index - 1 ? true : v))
       setLoading(false)
-    }, 500+2000*Math.random())
+    }, 500 + 2000 * Math.random())
   }
 
   function handleReset() {
-    setShowResetOptions(true)
+    setShowResetOptions(!showResetOptions)
   }
 
   function handleConfirm() {
@@ -92,10 +92,10 @@ export default () => {
       <Display number={lastNumber} loading={loading} />
       <Last index={currentRandIndex} />
       <button className='btn' disabled={loading} onClick={handleClick}>Próximo Número!</button>
-      <button className='btn' disabled={loading} onClick={handleReset}>Reiniciar</button>
+      <button className='btn reset-btn' disabled={loading} onClick={handleReset}>Reiniciar</button>
       <div className='resetOptions' hidden={!showResetOptions}>
-        <button className='confirm' onClick={handleConfirm}>Confirmar</button>
-        <button className='cancel' onClick={handleCancel}>Cancelar</button>
+        <button className='confirm btn' onClick={handleConfirm}>Confirmar</button>
+        <button className='cancel btn' onClick={handleCancel}>Cancelar</button>
       </div>
       <Table numbersChecked={numbersChecked} />
       <GlobalStyle />
